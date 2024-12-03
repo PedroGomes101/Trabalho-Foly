@@ -20,16 +20,20 @@ public class Comparador<Entidade extends EntidadeInterface>{
     }
     
     public Entidade find(int id){
+        
         for(Entidade element : lista){
             if(element.getId() == id) return element;
         }
+        
         return null;
     }
     
     public boolean compare(int id){
+        
         for(Entidade element : lista){
             if(element.getId() == id) return true;
         }
+        
         return false;
     }
 }

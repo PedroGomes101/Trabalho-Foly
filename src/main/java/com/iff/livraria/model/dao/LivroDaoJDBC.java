@@ -33,7 +33,7 @@ public class LivroDaoJDBC {
     
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO "+ nomeDaTabela+ "(nome, autor, descricao, qtd_paginas, foi_lido, saga) VALUES(?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO "+ nomeDaTabela+ " (nome, autor, descricao, qtd_paginas, foi_lido, saga, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)");
             
             ps.setString (1, entidade.getNome());
             ps.setString (2, entidade.getAutor());
@@ -41,6 +41,7 @@ public class LivroDaoJDBC {
             ps.setInt    (4, entidade.getQtdPaginas());
             ps.setBoolean(5, entidade.foiLido());
             ps.setInt    (6, entidade.getSaga().getId());
+            ps.setString (7, entidade.getImagem());
             ps.execute();
         } finally {
             if (conn != null) {
@@ -53,7 +54,7 @@ public class LivroDaoJDBC {
     
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE "+ nomeDaTabela + "SET nome=?, autor=?, descricao=?, qtd_paginas=?, foi_lido=? WHERE id=?");
+                    "UPDATE "+ nomeDaTabela + " SET nome=?, autor=?, descricao=?, qtd_paginas=?, foi_lido=? WHERE id=?");
             
             ps.setString (1, entidade.getNome());
             ps.setString (2, entidade.getAutor());
@@ -82,15 +83,13 @@ public class LivroDaoJDBC {
         }
     }
 
-    public List<Livro> listar(Comparador<Saga> sagas, Usuario usuario) throws Exception {
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
+    public List<Livro> listarLivros(Usuario usuario, Comparador<Saga> sagas) throws Exception {
+        List<Livro> lista = new ArrayList();
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + nomeDaTabela + " WHERE usuario=?");
             ps.setInt(1, usuario.getId());
             
             ResultSet rs = ps.executeQuery();
-            List<Livro> lista = new ArrayList();
             
             while (rs.next()) {
                 Saga saga = sagas.find(rs.getInt("saga"));
@@ -108,11 +107,12 @@ public class LivroDaoJDBC {
                 saga.addLivro(c);
                 lista.add(c);
             }
-            return lista;
+            
         } finally {
             if (conn != null) {
                 conn.close();
             }
+            return lista;
         }
 
 

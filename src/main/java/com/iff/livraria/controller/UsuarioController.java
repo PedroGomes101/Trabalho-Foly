@@ -5,32 +5,52 @@
 package com.iff.livraria.controller;
 
 import com.iff.livraria.model.Usuario;
+import com.iff.livraria.model.dao.DaoFactory;
+import com.iff.livraria.model.dao.UsuarioDaoJDBC;
+import com.iff.livraria.utils.exception.UserNameExistsException;
+import com.iff.livraria.utils.exception.UserNotFoundException;
 
 /**
  *
  * @author jao
  */
 public class UsuarioController {
-    public static Usuario user;
+    public static Usuario usr;
     
-    private static boolean atualizado = false;
-    
-    public static void atualizaUsuario(String nome, String nomeDeUsuario){
-        nome = nome.trim();
+    public static void cadastrarUsuario(String nome, String nomeDeUsuario, String senha) throws UserNameExistsException, Exception{
         nomeDeUsuario = nomeDeUsuario.trim();
+        nome = nome.trim();
+        senha = senha.trim();
         
-        if(!nome.isEmpty()) {
-            user.setNome(nome);
-            atualizado = true;
+        Usuario tempUsr = new Usuario(nome, nomeDeUsuario);
+        
+        try{
+            UsuarioDaoJDBC usrNameExistsConn = DaoFactory.getUsuarioDaoConnection();
+            
+            if(usrNameExistsConn.existeNomeUsuario(tempUsr.getNomeDeUsuario())) 
+                throw new UserNameExistsException("");
+            
+            UsuarioDaoJDBC createNewUsrConn = DaoFactory.getUsuarioDaoConnection();
+            createNewUsrConn.cadastar(tempUsr, senha);
         }
-        
-        if(!nomeDeUsuario.isEmpty()){
-            user.setNomeDeUsuario(nomeDeUsuario);
-            atualizado = true;
+        finally{
+            
         }
     }
     
-    public static boolean foiAtualizado(){
-        return atualizado;
+    public static void login(String nomeDeUsuario, String senha) throws UserNotFoundException, Exception{
+        nomeDeUsuario = nomeDeUsuario.trim();
+        senha = senha.trim();
+        
+       
+        UsuarioDaoJDBC usrLoginConn = DaoFactory.getUsuarioDaoConnection();
+
+        Usuario usuario = usrLoginConn.getUsuarioPorLogin(nomeDeUsuario, senha);
+
+        if(usuario == null) throw new UserNotFoundException("Nome de usuário ou senha incorretos!");
+
+        usr = usuario;
+        
+        
     }
 }

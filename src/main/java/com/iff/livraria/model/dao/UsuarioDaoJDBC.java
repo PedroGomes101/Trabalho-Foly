@@ -7,6 +7,7 @@ package com.iff.livraria.model.dao;
 import com.iff.livraria.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -24,7 +25,7 @@ public class UsuarioDaoJDBC {
         
         try{
             PreparedStatement ps = conn.prepareStatement(
-                "INSERT INTO " + nomeDaTabela + "(nome, nome_de_usuario, senha) values (?, ?, ?);");
+                "INSERT INTO " + nomeDaTabela + " (nome, nome_de_usuario, senha) values (?, ?, ?);");
         
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getNomeDeUsuario());
@@ -39,19 +40,58 @@ public class UsuarioDaoJDBC {
         }
     }
     
-//    public boolean existeNomeUsuario(Usuario usuario) throws Exception{
-//        
-//        boolean existe = true; 
-//        try{
-//            PreparedStatement ps = conn.prepareStatement(
-//                "SELECT * FROM " + nomeDaTabela + "WHERE");
-//        
-//            
-//        }
-//        finally{
-//            if(conn != null){
-//                conn.close();
-//            }
-//        }
-//    };
+    public boolean existeNomeUsuario(String nomeDeUsuario) throws Exception{
+         
+        boolean existe = false;
+        try{
+            PreparedStatement ps = conn.prepareStatement(
+                "SELECT * FROM " + nomeDaTabela + " WHERE nome_de_usuario = ?");
+        
+            ps.setString(1, nomeDeUsuario);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()) existe = true;
+            else          existe =  false;
+            
+        }
+        finally{
+            if(conn != null){
+                conn.close();
+            }
+            return existe;
+        }
+    }
+    
+    public Usuario getUsuarioPorLogin(String nomeDeUsuario, String senha) throws Exception{
+         
+        Usuario usuarioEncontrado = null;
+        
+        try{
+            PreparedStatement ps = conn.prepareStatement(
+                "SELECT * FROM " + nomeDaTabela + " WHERE nome_de_usuario =? AND senha =?");
+        
+            ps.setString(1, nomeDeUsuario);
+            ps.setString(2, senha);
+           
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                usuarioEncontrado =  new Usuario(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("nome_de_usuario")      
+                );
+            }
+            
+        }
+        finally{
+            if(conn != null){
+                conn.close();
+            }
+            return usuarioEncontrado;
+        }
+        
+    }
 }

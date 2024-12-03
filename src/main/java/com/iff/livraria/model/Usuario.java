@@ -32,6 +32,13 @@ public class Usuario implements EntidadeInterface{
         this.livros = new ArrayList();
     }
     
+    public Usuario(String nome, String nomeDeUsuario){
+        this.nome = nome;
+        this.nomeDeUsuario = nomeDeUsuario;
+        this.id = -1;
+        this.livros = null;
+    }
+    
     public String getNome(){
         return this.nome;
     }

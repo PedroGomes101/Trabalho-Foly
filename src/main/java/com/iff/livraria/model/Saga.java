@@ -18,17 +18,20 @@ public class Saga implements EntidadeInterface{
     private String descricao;
     private List<Livro> livros;
 
-    public Saga(int id, String nome, String autor, List<Livro> livros) {
+    public Saga(int id, String nome, String autor,String descricao, List<Livro> livros) {
         this.id = id;
         this.nome = nome;
         this.autor = autor;
+        this.descricao = descricao;
         this.livros = livros;
+        
     }
 
-    public Saga(int id, String nome, String autor) {
+    public Saga(int id, String nome, String autor, String descricao) {
         this.id = id;
         this.nome = nome;
         this.autor = autor;
+        this.descricao = descricao;
         
         this.livros = new ArrayList();
     }
