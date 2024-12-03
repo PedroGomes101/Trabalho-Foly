@@ -33,6 +33,17 @@ public class Livro implements EntidadeInterface{
         this.saga = saga;
         this.imagem = imagem;
     }
+    
+    public Livro(String nome, String autor,String descricao, int qtdPaginas, boolean foiLido, Saga saga, String imagem) {
+        this.id = -1;
+        this.nome = nome;
+        this.autor = autor;
+        this.descricao = descricao;
+        this.qtdPaginas = qtdPaginas;
+        this.foiLido = foiLido;
+        this.saga = saga;
+        this.imagem = imagem;
+    }
 
     public String getImagem() {
         return imagem;

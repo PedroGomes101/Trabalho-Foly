@@ -94,4 +94,30 @@ public class UsuarioDaoJDBC {
         }
         
     }
+    
+    public void delete(Usuario usuario)throws Exception{
+        String nomeDoCampo = usuario.getId() > 0 
+                ? "id"
+                : "nome_de_usuario";
+        try{
+            PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM " + nomeDaTabela + " WHERE "+ nomeDoCampo + "=?");
+        
+            if(usuario.getId() <= -1){
+               ps.setString(1, usuario.getNomeDeUsuario());
+            }
+            else{
+               ps.setInt(1, usuario.getId());
+            }
+           
+            
+            ps.execute();
+            
+        }
+        finally{
+            if(conn != null){
+                conn.close();
+            }
+        }
+    }
 }

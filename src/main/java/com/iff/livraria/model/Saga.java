@@ -36,6 +36,15 @@ public class Saga implements EntidadeInterface{
         this.livros = new ArrayList();
     }
     
+    public Saga(String nome, String autor, String descricao) {
+        this.id = -1;
+        this.nome = nome;
+        this.autor = autor;
+        this.descricao = descricao;
+        
+        this.livros = new ArrayList();
+    }
+    
     private int livrosLidos(){
         int total = 0;
         
@@ -75,6 +84,10 @@ public class Saga implements EntidadeInterface{
         this.autor = autor;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+    
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

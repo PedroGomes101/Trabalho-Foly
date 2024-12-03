@@ -15,42 +15,13 @@ import com.iff.livraria.utils.exception.UserNotFoundException;
  * @author jao
  */
 public class UsuarioController {
-    public static Usuario usr;
     
-    public static void cadastrarUsuario(String nome, String nomeDeUsuario, String senha) throws UserNameExistsException, Exception{
-        nomeDeUsuario = nomeDeUsuario.trim();
-        nome = nome.trim();
-        senha = senha.trim();
-        
-        Usuario tempUsr = new Usuario(nome, nomeDeUsuario);
-        
-        try{
-            UsuarioDaoJDBC usrNameExistsConn = DaoFactory.getUsuarioDaoConnection();
-            
-            if(usrNameExistsConn.existeNomeUsuario(tempUsr.getNomeDeUsuario())) 
-                throw new UserNameExistsException("");
-            
-            UsuarioDaoJDBC createNewUsrConn = DaoFactory.getUsuarioDaoConnection();
-            createNewUsrConn.cadastar(tempUsr, senha);
-        }
-        finally{
-            
-        }
-    }
     
-    public static void login(String nomeDeUsuario, String senha) throws UserNotFoundException, Exception{
-        nomeDeUsuario = nomeDeUsuario.trim();
-        senha = senha.trim();
+    public static void delete(Usuario usuario) throws UserNotFoundException, Exception{
         
-       
-        UsuarioDaoJDBC usrLoginConn = DaoFactory.getUsuarioDaoConnection();
+        UsuarioDaoJDBC usrDeleteConn = DaoFactory.getUsuarioDaoConnection();
 
-        Usuario usuario = usrLoginConn.getUsuarioPorLogin(nomeDeUsuario, senha);
-
-        if(usuario == null) throw new UserNotFoundException("Nome de usuário ou senha incorretos!");
-
-        usr = usuario;
-        
+        usrDeleteConn.delete(usuario);
         
     }
 }

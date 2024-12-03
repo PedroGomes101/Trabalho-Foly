@@ -5,6 +5,7 @@ import com.iff.livraria.model.Livro;
 import com.iff.livraria.model.Saga;
 import com.iff.livraria.model.Usuario;
 import com.iff.livraria.utils.Comparador;
+import com.iff.livraria.utils.UtilDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,19 +30,21 @@ public class LivroDaoJDBC {
        this.conn = ConnFactory.getConnection();
     }
     
-    public void incluir(Livro entidade) throws Exception {
+    public void incluir(Livro livro, Usuario usuario) throws Exception {
     
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO "+ nomeDaTabela+ " (nome, autor, descricao, qtd_paginas, foi_lido, saga, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO "+ nomeDaTabela+ " (nome, autor, descricao, qtd_paginas, foi_lido, imagem, usuario, saga) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             
-            ps.setString (1, entidade.getNome());
-            ps.setString (2, entidade.getAutor());
-            ps.setString (3, entidade.getDescricao());
-            ps.setInt    (4, entidade.getQtdPaginas());
-            ps.setBoolean(5, entidade.foiLido());
-            ps.setInt    (6, entidade.getSaga().getId());
-            ps.setString (7, entidade.getImagem());
+            ps.setString (1, livro.getNome());
+            ps.setString (2, livro.getAutor());
+            ps.setString (3, livro.getDescricao());
+            ps.setInt    (4, livro.getQtdPaginas());
+            ps.setBoolean(5, livro.foiLido());
+            ps.setString (6, livro.getImagem());
+            ps.setInt    (7, usuario.getId());
+            UtilDatabase.setIntOrNullByEntityId(ps, 8, livro.getSaga());
+            
             ps.execute();
         } finally {
             if (conn != null) {

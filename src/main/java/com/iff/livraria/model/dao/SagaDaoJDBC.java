@@ -72,4 +72,22 @@ public class SagaDaoJDBC {
             return lista;
         }
     }
+    
+    public void incluir(Saga saga, Usuario usuario) throws Exception {
+    
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    "INSERT INTO "+ nomeDaTabela + " (nome, autor, descricao, usuario) VALUES(?, ?, ?, ?)");
+            
+                ps.setString(1, saga.getNome());
+                ps.setString(2, saga.getAutor());
+                ps.setString(3, saga.getDescricao());
+                ps.setInt(4, usuario.getId());
+                ps.execute();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
 }
