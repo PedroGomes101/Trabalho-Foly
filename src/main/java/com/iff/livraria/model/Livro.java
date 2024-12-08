@@ -85,7 +85,7 @@ public class Livro implements EntidadeInterface{
         return descricao;
     }
 
-    public boolean foiLido() {
+    public boolean isFoiLido() {
         return foiLido;
     }
 

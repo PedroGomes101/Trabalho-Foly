@@ -24,10 +24,25 @@ public class SecaoController {
     public static Usuario usr;
     public static List<Saga> sagas;
     public static List<Livro> livros;
+    public static int qtdLivros;
+    public static int qtdLivrosLidos;
     
     public static void buscar() throws Exception{
+        
+        //tirar depois !!!!!!!!!!!!
+        
+        
+        
         sagas = getSagas(usr);
         livros = getLivros(usr, sagas);
+        
+        qtdLivros = livros.size();
+        
+        qtdLivrosLidos = 0;
+        for(Livro l : livros){
+            if(l.isFoiLido()) 
+                qtdLivrosLidos++;
+        }
     }
     
     public static void cadastrarUsuario(String nome, String nomeDeUsuario, String senha) throws UserNameExistsException, Exception{
@@ -64,8 +79,8 @@ public class SecaoController {
 
         usr = usuario;
         
-        
     }
+    
     private static List<Saga> getSagas(Usuario usuario) throws Exception{
         List<Saga> lista = null;
         

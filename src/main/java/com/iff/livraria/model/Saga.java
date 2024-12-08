@@ -49,7 +49,7 @@ public class Saga implements EntidadeInterface{
         int total = 0;
         
         for(Livro livro : this.livros){
-            if(livro.foiLido()) total++;
+            if(livro.isFoiLido()) total++;
         }
         
         return total;

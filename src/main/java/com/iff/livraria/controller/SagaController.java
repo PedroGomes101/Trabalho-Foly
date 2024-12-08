@@ -18,10 +18,11 @@ import java.util.List;
  * @author jao
  */
 public class SagaController {
-    public static List<Saga> sagas;
     
-    public static void get(Usuario usuario, Comparador sagaComparador){
+    public static List<Saga> buscar(Usuario usuario) throws Exception{
         
+        SagaDaoJDBC getSagaConn = DaoFactory.getSagaDaoConnection();
+        return getSagaConn.listarSagas(usuario);
     }
     
     public static void incluir(Saga saga, Usuario usuario) throws Exception{

@@ -23,7 +23,7 @@ public class LivroDaoJDBC {
 //  private String autor;
 //  private String descricao;
 //  private int qtdPaginas;
-//  private boolean foiLido;
+//  private boolean isFoiLido;
 //  private Saga saga;
     
     public LivroDaoJDBC() throws Exception{
@@ -40,7 +40,7 @@ public class LivroDaoJDBC {
             ps.setString (2, livro.getAutor());
             ps.setString (3, livro.getDescricao());
             ps.setInt    (4, livro.getQtdPaginas());
-            ps.setBoolean(5, livro.foiLido());
+            ps.setBoolean(5, livro.isFoiLido());
             ps.setString (6, livro.getImagem());
             ps.setInt    (7, usuario.getId());
             UtilDatabase.setIntOrNullByEntityId(ps, 8, livro.getSaga());
@@ -63,7 +63,7 @@ public class LivroDaoJDBC {
             ps.setString (2, entidade.getAutor());
             ps.setString (3, entidade.getDescricao());
             ps.setInt    (4, entidade.getQtdPaginas());
-            ps.setBoolean(5, entidade.foiLido());
+            ps.setBoolean(5, entidade.isFoiLido());
             ps.setInt    (6, entidade.getSaga().getId());
             ps.execute();
         } finally {

@@ -19,10 +19,10 @@ import static com.iff.livraria.controller.SecaoController.usr;
  */
 public class FakeMain {
     
-    public static Saga sagaTeste = new Saga("Saga Teste", "Autor Teste", "Descriçao de Teste");
-    public static Livro livroTeste = new Livro("Livro Teste", "Autor Teste", "Descrição de Teste", 666, true, null, "imagem/imagem1.png");
+    public static Saga    sagaTeste = new Saga("Saga Teste", "Autor Teste", "Descriçao de Teste");
+    public static Livro   livroTeste = new Livro("Livro Teste", "Autor Teste", "Descrição de Teste", 666, true, null, "imagem/imagem1.png");
     public static Usuario usuarioTeste = new Usuario("nomeTeste", "nomeDeUsuarioTeste");
-    public static String senhaTeste = "senha_teste";
+    public static String  senhaTeste = "senha_teste";
     
     public static void main(String args[]){
         try{
@@ -56,6 +56,7 @@ public class FakeMain {
         for(int i = 0; i < 10; i++){
             String nomeLivro = "Livro Teste" + i;
             livroTeste.setNome(nomeLivro);
+            livroTeste.setFoiLido(Math.random() < 0.5);
             LivroController.incluir(livroTeste, usr);
         }
         
