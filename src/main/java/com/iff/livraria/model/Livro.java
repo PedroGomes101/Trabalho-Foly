@@ -19,29 +19,26 @@ public class Livro implements EntidadeInterface{
     private String descricao;
     private int qtdPaginas;
     private boolean foiLido;
-    private Saga saga;
     private String imagem;
     
 
-    public Livro(int id, String nome, String autor,String descricao, int qtdPaginas, boolean foiLido, Saga saga, String imagem) {
+    public Livro(int id, String nome, String autor,String descricao, int qtdPaginas, boolean foiLido, String imagem) {
         this.id = id;
         this.nome = nome;
         this.autor = autor;
         this.descricao = descricao;
         this.qtdPaginas = qtdPaginas;
         this.foiLido = foiLido;
-        this.saga = saga;
         this.imagem = imagem;
     }
     
-    public Livro(String nome, String autor,String descricao, int qtdPaginas, boolean foiLido, Saga saga, String imagem) {
+    public Livro(String nome, String autor,String descricao, int qtdPaginas, boolean foiLido, String imagem) {
         this.id = -1;
         this.nome = nome;
         this.autor = autor;
         this.descricao = descricao;
         this.qtdPaginas = qtdPaginas;
         this.foiLido = foiLido;
-        this.saga = saga;
         this.imagem = imagem;
     }
 
@@ -93,14 +90,6 @@ public class Livro implements EntidadeInterface{
         this.foiLido = foiLido;
     }
 
-    public Saga getSaga() {
-        return saga;
-    }
-
-    public void setSaga(Saga saga) {
-        this.saga = saga;
-    }
-    
     @Override
     public int getId() {
         return id;

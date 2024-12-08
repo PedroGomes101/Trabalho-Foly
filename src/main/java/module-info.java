@@ -34,7 +34,6 @@ module Livraria {
     opens com.iff.livraria.controller.view to javafx.fxml;
     exports com.iff.livraria.controller.view;
     
-    exports com.iff.livraria.utils;
     exports com.iff.livraria.utils.exception;
     exports com.iff.livraria.imagem;
     

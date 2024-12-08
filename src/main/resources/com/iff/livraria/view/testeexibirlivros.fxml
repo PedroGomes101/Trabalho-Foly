@@ -16,10 +16,9 @@
    <children>
       <TableView fx:id="tabelaDeLivros" layoutX="14.0" layoutY="104.0" onMouseClicked="#onClickFunction" prefHeight="458.0" prefWidth="807.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn fx:id="nomeDoLivro" prefWidth="292.7283878326416" text="Nome do livro" />
-          <TableColumn fx:id="autor" minWidth="0.0" prefWidth="258.1827697753906" text="Autor" />
-            <TableColumn fx:id="lido" prefWidth="79.0911865234375" text="Lido" />
-            <TableColumn fx:id="saga" prefWidth="179.091552734375" text="Saga" />
+          <TableColumn fx:id="nomeDoLivro" prefWidth="359.09221839904785" text="Nome do livro" />
+          <TableColumn fx:id="autor" minWidth="0.0" prefWidth="376.3650207519531" text="Autor" />
+            <TableColumn fx:id="lido" prefWidth="71.8184814453125" text="Lido" />
         </columns>
       </TableView>
       <ToolBar layoutX="107.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

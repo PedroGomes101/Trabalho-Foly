@@ -5,13 +5,10 @@
 package com.iff.livraria.controller;
 
 import com.iff.livraria.model.Livro;
-import com.iff.livraria.model.Saga;
 import com.iff.livraria.model.Usuario;
 import com.iff.livraria.model.dao.DaoFactory;
 import com.iff.livraria.model.dao.LivroDaoJDBC;
-import com.iff.livraria.model.dao.SagaDaoJDBC;
 import com.iff.livraria.model.dao.UsuarioDaoJDBC;
-import com.iff.livraria.utils.Comparador;
 import com.iff.livraria.utils.exception.UserNameExistsException;
 import com.iff.livraria.utils.exception.UserNotFoundException;
 import java.util.List;
@@ -22,19 +19,12 @@ import java.util.List;
  */
 public class SecaoController {
     public static Usuario usr;
-    public static List<Saga> sagas;
     public static List<Livro> livros;
     public static int qtdLivros;
     public static int qtdLivrosLidos;
     
-    public static void buscar() throws Exception{
-        
-        //tirar depois !!!!!!!!!!!!
-        
-        
-        
-        sagas = getSagas(usr);
-        livros = getLivros(usr, sagas);
+    public static void buscar() throws Exception{     
+        livros = getLivros(usr);
         
         qtdLivros = livros.size();
         
@@ -81,25 +71,12 @@ public class SecaoController {
         
     }
     
-    private static List<Saga> getSagas(Usuario usuario) throws Exception{
-        List<Saga> lista = null;
-        
-        try{
-            SagaDaoJDBC sagaConn = DaoFactory.getSagaDaoConnection();
-            lista = sagaConn.listarSagas(usuario);
-            
-        }finally{
-            
-            return lista;
-        }
-    }
     
-    private static List<Livro> getLivros(Usuario usuario, List<Saga> sagaLista){
+    private static List<Livro> getLivros(Usuario usuario){
         List<Livro> lista = null;
-        Comparador<Saga> comparador = new Comparador(sagaLista);
         try{
             LivroDaoJDBC sagaConn = DaoFactory.getLivroDaoConnection();
-            lista = sagaConn.listarLivros( usuario, comparador );
+            lista = sagaConn.listarLivros( usuario);
             
         }finally{
             

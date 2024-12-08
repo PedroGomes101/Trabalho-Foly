@@ -5,11 +5,9 @@
 package com.iff.livraria.controller;
 
 import com.iff.livraria.model.Livro;
-import com.iff.livraria.model.Saga;
 import com.iff.livraria.model.Usuario;
 import com.iff.livraria.model.dao.DaoFactory;
 import com.iff.livraria.model.dao.LivroDaoJDBC;
-import com.iff.livraria.utils.Comparador;
 import java.util.List;
 
 /**
@@ -18,7 +16,7 @@ import java.util.List;
  */
 public class LivroController {
     
-    public static void getLivros(Usuario usuario, Comparador sagaComparador){
+    public static void getLivros(Usuario usuario){
         
     }
     
@@ -27,11 +25,10 @@ public class LivroController {
         createBookConn.incluir(livro, usuario);
     }
     
-    public static List<Livro> buscar(Usuario usuario, List<Saga> sagas) throws Exception{
+    public static List<Livro> buscar(Usuario usuario) throws Exception{
         
-        Comparador<Saga> comparatorSaga = new Comparador(sagas);
         
         LivroDaoJDBC getBooksConn = DaoFactory.getLivroDaoConnection();
-        return getBooksConn.listarLivros(usuario, comparatorSaga);
+        return getBooksConn.listarLivros(usuario);
     }
 }

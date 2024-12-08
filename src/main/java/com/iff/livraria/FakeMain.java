@@ -5,11 +5,9 @@
 package com.iff.livraria;
 
 import com.iff.livraria.controller.LivroController;
-import com.iff.livraria.controller.SagaController;
 import com.iff.livraria.controller.SecaoController;
 import com.iff.livraria.controller.UsuarioController;
 import com.iff.livraria.model.Livro;
-import com.iff.livraria.model.Saga;
 import com.iff.livraria.model.Usuario;
 
 import static com.iff.livraria.controller.SecaoController.usr;
@@ -19,16 +17,13 @@ import static com.iff.livraria.controller.SecaoController.usr;
  */
 public class FakeMain {
     
-    public static Saga    sagaTeste = new Saga("Saga Teste", "Autor Teste", "Descriçao de Teste");
-    public static Livro   livroTeste = new Livro("Livro Teste", "Autor Teste", "Descrição de Teste", 666, true, null, "imagem/imagem1.png");
+    public static Livro   livroTeste = new Livro("Livro Teste", "Autor Teste", "Descrição de Teste", 666, true, "imagens/91e2d41f-5f5e-47fe-9fe2-5d740d24e26d.png");
     public static Usuario usuarioTeste = new Usuario("nomeTeste", "nomeDeUsuarioTeste");
     public static String  senhaTeste = "senha_teste";
     
     public static void main(String args[]){
         try{
             iniciarTeste();
-            
-            System.out.println(SecaoController.sagas.size());
             System.out.println(SecaoController.livros.size());
             
             
@@ -45,14 +40,6 @@ public class FakeMain {
         SecaoController.cadastrarUsuario(usuarioTeste.getNome(), usuarioTeste.getNomeDeUsuario(), senhaTeste);
         SecaoController.login(usuarioTeste.getNomeDeUsuario(), senhaTeste);
         
-        for(int i = 0; i < 4; i++){
-            String nomeSaga = "Saga Teste" + i;
-            sagaTeste.setNome(nomeSaga);
-            SagaController.incluir(sagaTeste, usr);
-        }
-        
-        SecaoController.buscar();
-        livroTeste.setSaga(SecaoController.sagas.get(0));
         for(int i = 0; i < 10; i++){
             String nomeLivro = "Livro Teste" + i;
             livroTeste.setNome(nomeLivro);

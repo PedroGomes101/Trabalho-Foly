@@ -2,10 +2,7 @@
 package com.iff.livraria.model.dao;
 
 import com.iff.livraria.model.Livro;
-import com.iff.livraria.model.Saga;
 import com.iff.livraria.model.Usuario;
-import com.iff.livraria.utils.Comparador;
-import com.iff.livraria.utils.UtilDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +31,7 @@ public class LivroDaoJDBC {
     
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO "+ nomeDaTabela+ " (nome, autor, descricao, qtd_paginas, foi_lido, imagem, usuario, saga) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO "+ nomeDaTabela+ " (nome, autor, descricao, qtd_paginas, foi_lido, imagem, usuario) VALUES(?, ?, ?, ?, ?, ?, ?)");
             
             ps.setString (1, livro.getNome());
             ps.setString (2, livro.getAutor());
@@ -43,7 +40,6 @@ public class LivroDaoJDBC {
             ps.setBoolean(5, livro.isFoiLido());
             ps.setString (6, livro.getImagem());
             ps.setInt    (7, usuario.getId());
-            UtilDatabase.setIntOrNullByEntityId(ps, 8, livro.getSaga());
             
             ps.execute();
         } finally {
@@ -64,7 +60,7 @@ public class LivroDaoJDBC {
             ps.setString (3, entidade.getDescricao());
             ps.setInt    (4, entidade.getQtdPaginas());
             ps.setBoolean(5, entidade.isFoiLido());
-            ps.setInt    (6, entidade.getSaga().getId());
+            ps.setInt    (6, entidade.getId());
             ps.execute();
         } finally {
             if (conn != null) {
@@ -86,7 +82,7 @@ public class LivroDaoJDBC {
         }
     }
 
-    public List<Livro> listarLivros(Usuario usuario, Comparador<Saga> sagas) throws Exception {
+    public List<Livro> listarLivros(Usuario usuario) throws Exception {
         List<Livro> lista = new ArrayList();
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + nomeDaTabela + " WHERE usuario=?");
@@ -95,7 +91,6 @@ public class LivroDaoJDBC {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
-                Saga saga = sagas.find(rs.getInt("saga"));
                 Livro c = new Livro(
                         rs.getInt    ("id"),
                         rs.getString ("nome"),
@@ -103,11 +98,9 @@ public class LivroDaoJDBC {
                         rs.getString ("descricao"),
                         rs.getInt    ("qtd_paginas"),
                         rs.getBoolean("foi_lido"),
-                        saga,
                         rs.getString ("imagem")
                 );
                 
-                saga.addLivro(c);
                 lista.add(c);
             }
             

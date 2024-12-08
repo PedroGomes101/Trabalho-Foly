@@ -6,7 +6,6 @@ package com.iff.livraria.controller.view;
 
 import com.iff.livraria.controller.SecaoController;
 import com.iff.livraria.model.Livro;
-import com.iff.livraria.model.Saga;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -36,8 +35,6 @@ public class TesteexibirlivrosController implements Initializable {
     private TableColumn<Livro, String> autor;
     @FXML
     private TableColumn<Livro, Boolean> lido;
-    @FXML
-    private TableColumn<Livro, String> saga;
     
     private ObservableList<Livro> listaLivrosObservable;
 
@@ -74,10 +71,7 @@ public class TesteexibirlivrosController implements Initializable {
                 return cell;
             });
 
-            
-            saga.setCellValueFactory(cellData -> 
-                new SimpleStringProperty(cellData.getValue().getSaga() != null ? cellData.getValue().getSaga().getNome() : "Sem saga")
-            );
+           
 
             listaLivrosObservable = FXCollections.observableArrayList(SecaoController.livros);
             tabelaDeLivros.setItems(listaLivrosObservable);

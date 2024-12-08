@@ -16,8 +16,4 @@ public class DaoFactory {
     public static UsuarioDaoJDBC getUsuarioDaoConnection() throws Exception{
         return new UsuarioDaoJDBC();
     }
-    
-    public static SagaDaoJDBC getSagaDaoConnection() throws Exception{
-        return new SagaDaoJDBC();
-    }
 }

@@ -1,7 +1,5 @@
-com/iff/livraria/model/Saga.class
 com/iff/livraria/controller/view/CadastroLivroController$1.class
 com/iff/livraria/controller/LivroController.class
-com/iff/livraria/utils/Comparador.class
 com/iff/livraria/model/Usuario.class
 com/iff/livraria/model/dao/DaoFactory.class
 com/iff/livraria/controller/UsuarioController.class
@@ -10,9 +8,7 @@ com/iff/livraria/controller/ImagemController.class
 module-info.class
 com/iff/livraria/controller/view/TesteexibirlivrosController.class
 com/iff/livraria/view/PackageInfo.class
-com/iff/livraria/utils/UtilDatabase.class
 com/iff/livraria/model/dao/LivroDaoJDBC.class
-com/iff/livraria/controller/SagaController.class
 com/iff/livraria/utils/exception/UserNameExistsException.class
 com/iff/livraria/FakeMain.class
 com/iff/livraria/controller/view/CadastroLivroController.class
@@ -20,7 +16,6 @@ com/iff/livraria/utils/exception/NoChooseImageError.class
 com/iff/livraria/App.class
 com/iff/livraria/styles/PackageInfo.class
 com/iff/livraria/imagem/PackageInfo.class
-com/iff/livraria/model/dao/SagaDaoJDBC.class
 com/iff/livraria/utils/exception/ImageError.class
 com/iff/livraria/model/dao/ConnFactory.class
 com/iff/livraria/model/dao/InterfaceDao.class
