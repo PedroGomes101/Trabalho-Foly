@@ -26,9 +26,20 @@ public class LivroController {
     }
     
     public static List<Livro> buscar(Usuario usuario) throws Exception{
-        
-        
         LivroDaoJDBC getBooksConn = DaoFactory.getLivroDaoConnection();
         return getBooksConn.listarLivros(usuario);
     }
+    
+    public static void excluir(Livro livro) throws Exception{
+        LivroDaoJDBC deleteBookConn = DaoFactory.getLivroDaoConnection();
+        deleteBookConn.excluir(livro);
+        
+        ImagemController.apagarImagem(livro.getImagem());
+    }
+    
+    public static void editar(Livro livro) throws Exception{
+        LivroDaoJDBC editBookConn = DaoFactory.getLivroDaoConnection();
+        editBookConn.editar(livro);
+    }
+    
 }

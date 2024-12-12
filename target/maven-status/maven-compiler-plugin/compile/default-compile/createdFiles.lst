@@ -15,7 +15,6 @@ com/iff/livraria/controller/view/CadastroLivroController.class
 com/iff/livraria/utils/exception/NoChooseImageError.class
 com/iff/livraria/App.class
 com/iff/livraria/styles/PackageInfo.class
-com/iff/livraria/imagem/PackageInfo.class
 com/iff/livraria/utils/exception/ImageError.class
 com/iff/livraria/model/dao/ConnFactory.class
 com/iff/livraria/model/dao/InterfaceDao.class

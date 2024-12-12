@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.UUID;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
@@ -31,7 +32,22 @@ public class ImagemController {
         return new Image(inputStream);
     }
     
-    public String retornaCaminho(){
-        return file.getAbsolutePath();
+    public String salvarImagem() throws Exception{
+        UUID uid = UUID.randomUUID();
+        
+        String caminhoRelativo = "./imagens/"+uid+".png";
+        File newFile = new File(caminhoRelativo);
+        
+        ImageIO.write(bfImage, "png", newFile);
+        
+        return caminhoRelativo;
+        
+    }
+    
+    
+    public static void apagarImagem(String caminho){
+        File imagem = new File(caminho);
+        
+        if(imagem.exists()) imagem.delete();
     }
 }

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -89,6 +90,7 @@ public class CadastroLivroController implements Initializable {
 
     @FXML
     private void salvarImagem(ActionEvent event) {
+        
         try{
             if(img == null){
                 throw new NoChooseImageError("Selecione uma imagem para salvar");
@@ -96,12 +98,14 @@ public class CadastroLivroController implements Initializable {
            
             
             //O caminho retornado pela função deve ser colocado no banco de dados para encontar a imagem
-            String caminhoS = img.retornaCaminho(); 
+            String caminhoS = img.salvarImagem(); 
             System.out.println(caminhoS);
             
         }catch(NoChooseImageError e){
             System.out.println(e.getMessage());
             
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
     
