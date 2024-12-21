@@ -1,4 +1,3 @@
-
 package com.iff.livraria.model.dao;
 
 import java.sql.Connection;
@@ -11,7 +10,7 @@ public class ConnFactory {
      public static Connection getConnection() throws SQLException {
        
        Connection conn = DriverManager.getConnection(
-               "jdbc:mysql://localhost:3306/livraria", "jao", "masterkey");
+               "jdbc:mysql://localhost:3306/livraria", "root", "mysql");
 
        return conn;
      }    
