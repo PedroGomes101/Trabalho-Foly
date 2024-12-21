@@ -1,4 +1,3 @@
-
 package com.iff.livraria.controller;
 
 import com.iff.livraria.utils.exception.ImageError;
@@ -10,10 +9,6 @@ import java.util.UUID;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author jao
- */
 public class ImagemController {
     private BufferedImage bfImage;
     private File file;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.iff.livraria.controller.view;
 
 import com.iff.livraria.controller.ImagemController;
@@ -22,11 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
-/**
- * FXML Controller class
- *
- * @author jao
- */
 public class CadastroLivroController implements Initializable {
 
     @FXML
@@ -37,9 +28,6 @@ public class CadastroLivroController implements Initializable {
     @FXML
     private HBox hBoxImage;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         hBoxImage.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

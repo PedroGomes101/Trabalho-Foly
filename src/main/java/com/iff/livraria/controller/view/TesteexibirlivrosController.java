@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.iff.livraria.controller.view;
 
 import com.iff.livraria.controller.SecaoController;
@@ -20,11 +16,6 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author jao
- */
 public class TesteexibirlivrosController implements Initializable {
 
     @FXML
@@ -38,9 +29,6 @@ public class TesteexibirlivrosController implements Initializable {
     
     private ObservableList<Livro> listaLivrosObservable;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.carregarLivros();
@@ -50,10 +38,6 @@ public class TesteexibirlivrosController implements Initializable {
         try{
             nomeDoLivro.setCellValueFactory(new PropertyValueFactory<>("nome"));
             autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-            
-//            lido.setCellValueFactory(new PropertyValueFactory<>("lido"));
-//            lido.setCellFactory(CheckBoxTableCell.forTableColumn(lido));
-    
             
             lido.setCellValueFactory(cellData -> {
                 return new SimpleBooleanProperty(cellData.getValue().isFoiLido());
